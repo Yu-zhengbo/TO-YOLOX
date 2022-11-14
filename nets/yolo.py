@@ -7,6 +7,18 @@ import torch.nn as nn
 
 from .darknet import BaseConv, CSPDarknet, CSPLayer, DWConv
 
+class shift(nn.Module):
+    @staticmethod
+    def forward(feature,gamma=1/12,stride=1):
+        b, c, h, w = feature.shape
+        g = int(gamma * c)
+        out = torch.zeros_like(feature)
+        out[:, :g, :, :-stride] = feature[:, :g, :, stride:]
+        out[:, g:2 * g, :, stride:] = feature[:, g:2 * g, :, :-stride]
+        out[:, 2 * g:3 * g, :-stride, :] = feature[:, 2 * g:3 * g, stride:, :]
+        out[:, 3 * g:4 * g, stride:, :] = feature[:, 3 * g:4 * g, :-stride, :]
+        out[:, 4 * g:, :, :] = feature[:, 4 * g:, :, :]
+        return out
 
 class YOLOXHead(nn.Module):
     def __init__(self, num_classes, width = 1.0, in_channels = [256], act = "silu", depthwise = False,):
@@ -140,6 +152,7 @@ class YOLOPAFPN(nn.Module):
             depthwise = depthwise,
             act = act,
         )
+        self.Shift = shift()
         #self.trans_conv = nn.ConvTranspose2d(128,128,3,2,1)
         # self.trans_conv = nn.Upsample(scale_factor=2)
         '''
@@ -213,8 +226,9 @@ class YOLOPAFPN(nn.Module):
         #   80, 80, 512 -> 80, 80, 256
         #-------------------------------------------#
         P3_out      = self.C3_p3(P4_upsample)
+        P3_out = self.Shift(P3_out)
         # P3_out = self.trans_conv(P3_out)
-
+        
         '''
         #-------------------------------------------#
         #   80, 80, 256 -> 40, 40, 256
