@@ -20,11 +20,9 @@ RST-YOLOX
 
 
 
-![mAP](https://user-images.githubusercontent.com/72426381/180340183-1cce0787-8885-4598-a016-b2aae270d823.png)
+![mAP](https://github.com/Yu-zhengbo/TO-YOLOX/assets/72426381/869485f7-a77b-498e-9bfb-72ae98d671fe)
 ![1](https://user-images.githubusercontent.com/72426381/180340432-e3540bc4-c651-4924-8b2f-336164da2fa6.jpg)
 ![1_](https://user-images.githubusercontent.com/72426381/180340371-9fd4ca23-b5a6-4547-8fa7-e633cf27f463.jpg)
-
-![mAP](https://github.com/Yu-zhengbo/TO-YOLOX/assets/72426381/869485f7-a77b-498e-9bfb-72ae98d671fe)
 
 
 Reference:
