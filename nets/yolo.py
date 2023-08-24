@@ -13,10 +13,10 @@ class shift(nn.Module):
         b, c, h, w = feature.shape
         g = int(gamma * c)
         out = torch.zeros_like(feature)
-        out[:, :g, :, :-stride] = feature[:, :g, :, stride:]
-        out[:, g:2 * g, :, stride:] = feature[:, g:2 * g, :, :-stride]
-        out[:, 2 * g:3 * g, :-stride, :] = feature[:, 2 * g:3 * g, stride:, :]
-        out[:, 3 * g:4 * g, stride:, :] = feature[:, 3 * g:4 * g, :-stride, :]
+        out[:, :g, :, :-stride],out[:, :g, :, -stride:] = feature[:, :g, :, stride:],feature[:, :g, :, :stride]
+        out[:, g:2 * g, :, stride:],out[:, g:2 * g, :, :stride] = feature[:, g:2 * g, :, :-stride], feature[:, g:2 * g, :, -stride:]
+        out[:, 2 * g:3 * g, :-stride, :],out[:, 2 * g:3 * g, -stride:, :] = feature[:, 2 * g:3 * g, stride:, :],feature[:, 2 * g:3 * g, :stride, :]
+        out[:, 3 * g:4 * g, stride:, :],out[:, 3 * g:4 * g, :stride, :] = feature[:, 3 * g:4 * g, :-stride, :],feature[:, 3 * g:4 * g, -stride:, :]
         out[:, 4 * g:, :, :] = feature[:, 4 * g:, :, :]
         return out
 
