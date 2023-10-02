@@ -1,4 +1,4 @@
-## RST-YOLOX：remote sensing tiny object detect by You Only Look Once
+## TO–YOLOX: a pure CNN tiny object detection model for remote sensing images
 
 ## Reference
 The performance in Tiny person without crop
