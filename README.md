@@ -1,6 +1,6 @@
 ## TO–YOLOX: a pure CNN tiny object detection model for remote sensing images
 
-- Smith, John. "A New Approach to Data Analysis." Journal of Data Science, 2023.
+- Chen Z, Liang Y, Yu Z, Xu K, Ji Q, Zhang X, Zhang Q, Cui Z, He Z, Chang R, Sun Z. TO–YOLOX: a pure CNN tiny object detection model for remote sensing images. International Journal of Digital Earth. 2023 Dec 31;16(1):3882-904.
 
 ## Reference
 The performance in Tiny person without crop
